@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+    <header>
+
+        <div class="nav-container">
+
+            <div class="logo">
+                <img src="images/logo.png" alt="Recipe Hub logo" class="logo-img">
+                Recipe Hub
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="submit.html">Add Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <div class="search-box">
+
+            <h3>Search Recipes</h3>
+
+            <input type="text" id="searchInput" placeholder="Search recipes">
+
+            <button onclick="searchRecipes()" class="btn btn-primary">Search</button><br><br>
+
+            <button onclick="showAllRecipes()" class="btn btn-success">All Recipes</button><br><br>
+
+            <select onchange="filterCategory(this.value)">
+                <option value="category">Category</option>
+                <option value="sri">Sri Lankan Foods</option>
+                <option value="indian">Indian Foods</option>
+                <option value="european">European Foods</option>
+            </select>
+
+
+
+        </div>
+
+        <div id="mostPopular" class="content">
+
+            <h3>Most Popular</h3>
+
+            <div class="recipe-grid">
+
+
+                <div class="card european" style="width: 18rem;">
+                    <img src="foods/pizza.avif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza</h5>
+                        <p class="card-text">Made with a flat bread base topped with tomato sauce, cheese and meat, then
+                            baked in an oven.</p>
+                        <a href="recipe-details.html?name=Pizza" class="btn btn-primary">VIEW RECIPE ></a>
+                    </div>
+                </div>
+
+                <div class="card indian" style="width: 18rem;">
+                    <img src="foods/gulab jamun.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Gulab Jamun</h5>
+                        <p class="card-text">Soft, deep-fried milk dough balls soaked in warm, sweet cardamom-flavored
+                            sugar syrup.</p>
+                        <a href="recipe-details.html?name=Gulab Jamun" class="btn btn-primary">VIEW RECIPE ></a>
+                    </div>
+                </div>
+
+                <div class="card sri" style="width: 18rem;">
+                    <img src="foods/pittu1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pittu</h5>
+                        <p class="card-text">Steamed cylinders made from rice flour and grated coconut, usually eaten
+                            with curry or coconut milk.</p>
+                        <a href="recipe-details.html?name=Pittu" class="btn btn-primary">VIEW RECIPE ></a>
+                    </div>
+                </div>
+
+                <div class="card sri" style="width: 18rem;">
+                    <img src="foods/mango curry.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Mango Curry</h5>
+                        <p class="card-text">Mango curry is a sweet, tangy, and spicy dish commonly found in Sri Lankan
+                            .</p>
+                        <a href="recipe-details.html?name=Mango Curry" class="btn btn-primary">VIEW RECIPE ></a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <button onclick="showAllRecipes()" class="all-btn">All Recipes</button><br><br>
+
+    <div id="recipeList" class="d-flex flex-wrap gap-3"></div>
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h4>Recipe Hub</h4>
+                <p>Discover and share amazing recipes.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="submit.html">Add Recipe</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <P>Telephone:+94 76 123 4567<br>
+                    Email: taste@recipehub.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Recipe Hub</p>
+        </div>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>

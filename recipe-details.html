@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Recipe Details</title>
+  <link rel="stylesheet" href="recipe.css">
+</head>
+
+<body>
+  <header>
+
+    <div class="nav-container">
+      <div class="logo">
+        <img src="images/logo.png" alt="Recipe Hub logo" class="logo-img">
+        Recipe Hub
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="submit.html">Add Recipe</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <h1 class="recipe-title" id="recipeTitle"></h1>
+    <img src="" id="recipeImage" class="recipe-image">
+
+    <h2>Ingredients</h2>
+    <ul id="ingredientsList"></ul>
+
+    <h2>Instructions</h2>
+    <ol id="instructionsList"></ol>
+
+    <h2>Personal Notes</h2>
+    <textarea id="personalNotes" placeholder="Write your notes here..."></textarea>
+    <br>
+    <button class="btn" id="saveNoteBtn">Save Note</button><br>
+    <button class="btn back" onclick="location.href='index.html'">Back to home</button>
+
+  </div>
+
+  <script>
+
+    const recipes = {
+      "Pizza": {
+        image: "foods/pizza.avif",
+        ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Pepperoni or vegetables", "Olive oil", "Oregano", "Salt"],
+        steps: [
+          "Preheat the oven to 220°C",
+          "Roll the pizza dough into a flat circle",
+          "Spread tomato sauce on the dough",
+          "Add cheese and toppings",
+          "Sprinkle oregano and olive oil",
+          "Bake for 12–15 minutes",
+          "Slice and serve hot"
+        ]
+      },
+      "Gulab Jamun": {
+        image: "foods/gulab jamun.jpg",
+        ingredients: ["Milk powder", "Flour", "Baking soda", "Butter", "Milk", "Oil for frying", "Sugar", "Water", "Cardamom"],
+        steps: [
+          "Mix milk powder, flour, baking soda, and butter",
+          "Add milk and make a soft dough",
+          "Roll the dough into small balls",
+          "Heat oil and fry until golden brown",
+          "Boil sugar and water to make syrup",
+          "Add cardamom to the syrup",
+          "Put fried balls into syrup and soak"
+        ]
+      },
+      "Pittu": {
+        image: "foods/pittu1.jpg",
+        ingredients: ["Rice flour", "Grated coconut", "Salt", "Warm water"],
+        steps: [
+          "Mix rice flour and salt",
+          "Sprinkle warm water and mix until crumbly",
+          "Layer rice flour and coconut in pittu steamer",
+          "Steam for about 5 minutes",
+          "Remove carefully from the steamer",
+          "Serve with curry or coconut milk"
+        ]
+      },
+      "Mango Curry": {
+        image: "foods/mango curry.jpg",
+        ingredients: ["Ripe mangoes", "Coconut milk", "Onion", "Garlic", "Curry powder", "Turmeric", "Salt", "Oil"],
+        steps: [
+          "Peel and cut mangoes into pieces",
+          "Heat oil and sauté onion and garlic",
+          "Add curry powder and turmeric",
+          "Add mango pieces and cook",
+          "Pour coconut milk and add salt",
+          "Simmer for 10 minutes",
+          "Serve with rice"
+        ]
+      },
+      "Kottu Roti": {
+        image: "foods/kottu roti.jpg",
+        ingredients: ["Godamba roti", "Chicken or vegetables", "Eggs", "Onion", "Cabbage", "Carrot", "Curry sauce", "Salt", "Pepper"],
+        steps: [
+          "Cut the roti into small pieces",
+          "Heat oil in a large pan",
+          "Fry onion and vegetables",
+          "Add chicken or egg",
+          "Add chopped roti and curry sauce",
+          "Mix well while chopping with spatulas",
+          "Cook for 5 minutes and serve hot"
+        ]
+      },
+      "Hoppers": {
+        image: "foods/hoppers.jpeg",
+        ingredients: ["Rice flour", "Coconut milk", "Sugar", "Yeast", "Salt", "Water"],
+        steps: [
+          "Mix rice flour, coconut milk, and water",
+          "Add yeast, sugar, and salt",
+          "Leave the batter to ferment for a few hours",
+          "Heat a hopper pan and pour the batter",
+          "Rotate the pan to spread the batter",
+          "Cook until edges become crispy",
+          "Serve with sambol or curry"
+        ]
+      },
+      "Butter Chicken": {
+        image: "foods/butterchicken1.jpeg",
+        ingredients: ["Chicken", "Butter", "Tomato puree", "Cream", "Garlic", "Ginger", "Garam masala", "Salt"],
+        steps: [
+          "Cook chicken pieces in a pan",
+          "Heat butter in another pan",
+          "Add garlic and ginger",
+          "Add tomato puree and spices",
+          "Cook for a few minutes",
+          "Add cream and cooked chicken",
+          "Simmer until thick and serve"
+        ]
+      },
+      "Samosa": {
+        image: "foods/samosa.jpeg",
+        ingredients: ["Flour", "Potatoes", "Peas", "Onion", "Cumin seeds", "Spices", "Salt", "Oil"],
+        steps: [
+          "Prepare dough using flour and water",
+          "Boil and mash the potatoes",
+          "Mix potatoes with peas, onion, and spices",
+          "Roll dough and cut into triangles",
+          "Fill with potato mixture",
+          "Seal the edges",
+          "Deep fry until golden brown"
+        ]
+      },
+      "Idli": {
+        image: "foods/idli.jpeg",
+        ingredients: ["Rice", "Urad dal", "Water", "Salt"],
+        steps: [
+          "Soak rice and urad dal for several hours",
+          "Grind into a smooth batter",
+          "Leave the batter to ferment overnight",
+          "Add salt and mix well",
+          "Pour batter into idli molds",
+          "Steam for 10 minutes",
+          "Serve with chutney or sambar"
+        ]
+      },
+      "Pasta": {
+        image: "foods/pasta.jpeg",
+        ingredients: ["Pasta", "Tomato sauce", "Garlic", "Olive oil", "Cheese", "Salt", "Pepper"],
+        steps: [
+          "Boil pasta in salted water",
+          "Heat olive oil in a pan",
+          "Add garlic and cook for a minute",
+          "Add tomato sauce",
+          "Mix cooked pasta with the sauce",
+          "Add cheese and seasoning",
+          "Serve hot"
+        ]
+      },
+      "Lasagna": {
+        image: "foods/lasagna.jpeg",
+        ingredients: ["Lasagna sheets", "Minced meat", "Tomato sauce", "Cheese", "Onion", "Garlic", "Salt", "Pepper"],
+        steps: [
+          "Cook minced meat with onion and garlic",
+          "Add tomato sauce and cook",
+          "Layer lasagna sheets in a baking dish",
+          "Add meat sauce and cheese",
+          "Repeat layers",
+          "Bake in oven for 30 minutes",
+          "Serve warm"
+        ]
+      },
+      "Hamburgers": {
+        image: "foods/hamburgers.jpeg",
+        ingredients: ["Burger buns", "Ground beef", "Lettuce", "Tomato", "Cheese", "Onion", "Salt", "Pepper"],
+        steps: [
+          "Shape ground beef into patties",
+          "Season with salt and pepper",
+          "Cook patties on a pan or grill",
+          "Toast the burger buns",
+          "Place lettuce, tomato, and patty on bun",
+          "Add cheese and onion",
+          "Cover with top bun and serve"
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+
+    if (recipes[name]) {
+      document.getElementById("recipeTitle").innerText = name;
+      document.getElementById("recipeImage").src = recipes[name].image;
+
+      let ingHTML = "";
+      recipes[name].ingredients.forEach(i => {
+        ingHTML += `<li>${i}</li>`;
+      });
+      document.getElementById("ingredientsList").innerHTML = ingHTML;
+
+      let stepsHTML = "";
+      recipes[name].steps.forEach(s => {
+        stepsHTML += `<li>${s}</li>`;
+      });
+      document.getElementById("instructionsList").innerHTML = stepsHTML;
+
+    } else {
+      document.getElementById("recipeTitle").innerText = "Recipe Not Found";
+    }
+
+
+  </script>
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-section">
+        <h4>Recipe Hub</h4>
+        <p>Discover and share amazing recipes.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="submit.html">Add Recipe</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <P>Telephone:+94 76 123 4567<br>
+          Email: taste@recipehub.com</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Recipe Hub</p>
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
